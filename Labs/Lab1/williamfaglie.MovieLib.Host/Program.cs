@@ -1,4 +1,8 @@
-﻿using System;
+﻿// ITSE-1430
+// William Faglie
+// 2/5/18
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -127,7 +131,7 @@ namespace williamfaglie.MovieLib.Host
 
                 if (int.TryParse(value, out int result))
                 {
-                    //If not required or not empty
+                    //Values below minValue not allowed
                     if (result >= minValue)
                         return result;
 
