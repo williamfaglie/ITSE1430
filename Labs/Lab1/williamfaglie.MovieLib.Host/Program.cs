@@ -62,9 +62,12 @@ namespace williamfaglie.MovieLib.Host
 
             if (input == "Y")
                 if (_title != "")
+                {
                     _title = "";
                     _status = "";
                     _description = "";
+                } else;
+                
                     
         }
 
@@ -189,7 +192,7 @@ namespace williamfaglie.MovieLib.Host
                     _status = "Owned";
                 else
                     _status = "On wishlist";
-                string msg = $"{_title} \n {_description} \n" + "Run length = " + $"{_length}" + " mins \n" + "Status: " + $"{_status}";
+                string msg = $"{_title} \n{_description} \n" + "Run length = " + $"{_length}" + " mins \n" + "Status: " + $"{_status}";
                 Console.WriteLine(msg);
 
                 //if (!String.IsNullOrEmpty(_description))
