@@ -12,6 +12,7 @@ namespace williamfaglie.MovieLib.Host
         static int _length;
         static string _description;
         static bool _owned;
+        static string _status;
 
         static void Main( string[] args )
         {
@@ -37,7 +38,7 @@ namespace williamfaglie.MovieLib.Host
 
                     //case 'r':
                     case 'R':
-                    //RemoveMovie();
+                    RemoveMovie();
                     break;
 
                     //case 'e':
@@ -47,6 +48,24 @@ namespace williamfaglie.MovieLib.Host
                 };
             };
 
+        }
+
+        static void RemoveMovie()
+        {
+            Console.WriteLine("Are you sure youe want to delete the movie (Y/N)?");
+
+            string input = Console.ReadLine();
+
+            input = input.Trim();
+
+            input = input.ToUpper();
+
+            if (input == "Y")
+                if (_title != "")
+                    _title = "";
+                    _status = "";
+                    _description = "";
+                    
         }
 
         static void AddMovie()
@@ -79,14 +98,12 @@ namespace williamfaglie.MovieLib.Host
                 //'y':
                 if (input == "Y")
                 {
-                    Console.WriteLine("Status = Owned");
-                    return false;
+                    return true;
                 }
 
                 //'n':
                 else if (input == "N")
                 {
-                    Console.WriteLine("Status = On Wishlist");
                     return false;
                 }
                 
@@ -110,12 +127,13 @@ namespace williamfaglie.MovieLib.Host
                     //If not required or not empty
                     if (result >= minValue)
                         return result;
-                    else if (!isRequired)
-                        return minValue;
-                };
 
-                string msg = String.Format("Value must be >= {0}", minValue);
-                Console.WriteLine(msg);
+
+                    string msg = String.Format("Value must be >= {0}", minValue);
+                    Console.WriteLine(msg);
+                    
+                } else
+                    return minValue;        
             } while (true);
         }
 
@@ -167,14 +185,18 @@ namespace williamfaglie.MovieLib.Host
         {
             if (!String.IsNullOrEmpty(_title))
             {
-                string msg = $"{_title} \n {_description} \n" + "Run length = " + $"{_length}" + " mins \n" + ;
+                if (_owned == true)
+                    _status = "Owned";
+                else
+                    _status = "On wishlist";
+                string msg = $"{_title} \n {_description} \n" + "Run length = " + $"{_length}" + " mins \n" + "Status: " + $"{_status}";
                 Console.WriteLine(msg);
 
-                if (!String.IsNullOrEmpty(_description))
-                    Console.WriteLine(_description);
+                //if (!String.IsNullOrEmpty(_description))
+                //    Console.WriteLine(_description);
 
             } else
-                Console.WriteLine("No Movies");
+                Console.WriteLine("No movies available");
         }
     }
 }
