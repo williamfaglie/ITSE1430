@@ -10,8 +10,8 @@ namespace Nile.Host
     {
         static void Main( string[] args )
         {
-           bool quit = false;
-           while (!quit)
+            bool quit = false;
+            while (!quit)
             {
                 bool isEqual = quit.Equals(10);
                 //Display menu
@@ -21,18 +21,24 @@ namespace Nile.Host
                 switch (Char.ToUpper(choice))
                 {
                     //case 'l':
-                    case 'L': ListProducts(); break;
+                    case 'L':
+                    ListProducts();
+                    break;
 
                     //case 'a':
-                    case 'A': AddProduct(); break;
+                    case 'A':
+                    AddProduct();
+                    break;
 
                     //case 'q':
-                    case 'Q': quit = true; break;
+                    case 'Q':
+                    quit = true;
+                    break;
                 };
             };
         }
 
-        static void AddProduct ()
+        static void AddProduct()
         {
             //Get name
             _name = ReadString("Enter name: ", true);
@@ -65,7 +71,7 @@ namespace Nile.Host
             } while (true);
         }
 
-        private static string ReadString( string message, bool isRequired)
+        private static string ReadString( string message, bool isRequired )
         {
             do
             {
@@ -113,7 +119,7 @@ namespace Nile.Host
                     return input[0];
                 else if (input == "Q")
                     return input[0];
-                
+
                 Console.WriteLine("Please choose a valid option");
             } while (true);
         }
@@ -123,7 +129,7 @@ namespace Nile.Host
             // Are there any products?
             //if (_name != null && _name != "")
             if (!String.IsNullOrEmpty(_name))
-                {
+            {
                 // Display a product - name [$price]
                 //                     <description>
 
@@ -143,7 +149,7 @@ namespace Nile.Host
                 //Console.WriteLine(_price);
 
                 if (!String.IsNullOrEmpty(_description))
-                Console.WriteLine(_description);
+                    Console.WriteLine(_description);
             } else
                 Console.WriteLine("No products");
         }
@@ -153,7 +159,7 @@ namespace Nile.Host
         static decimal _price;
         static string _description;
 
-        static void PlayingWithPrimitives ()
+        static void PlayingWithPrimitives()
         {
             //Primitive
             decimal unitPrice = 10.5M;
@@ -168,7 +174,7 @@ namespace Nile.Host
             System.Collections.ArrayList items;
         }
 
-        static void PlayingWithVariables ()
+        static void PlayingWithVariables()
         {
             int hours = 0;
 
@@ -203,6 +209,42 @@ namespace Nile.Host
             x += 10;
             double ceiling = Math.Ceiling(rate);
             double floor = ceiling;
+        }
+
+
+        static void PlayingWithReferences()
+        {
+            var message = "Hello";
+            string name = null;
+
+            name = new string('*', 10);
+
+            object instance = name;
+
+            //Is operator (Determines if instance is string)
+            if (instance is string)
+            {
+                string str2 = (string)instance;
+                Console.WriteLine(str2);
+
+            } else
+                Console.WriteLine("Not a string");
+
+            //As operator
+            string str = instance as string;
+            if (str != null)
+            {
+                Console.WriteLine(str);
+
+            } else
+                Console.WriteLine("Not a string");
+
+            //pattern matching
+            if (instance is string str3)
+            {
+                Console.WriteLine(str3);
+            } else
+                Console.WriteLine("Not a string");
         }
     }
 }
