@@ -56,7 +56,7 @@ namespace williamfaglie.MovieLib.Host
 
         static void RemoveMovie()
         {
-            Console.WriteLine("Are you sure youe want to delete the movie (Y/N)?");
+            Console.WriteLine("Are you sure you want to delete the movie (Y/N)?");
 
             string input = Console.ReadLine();
 
