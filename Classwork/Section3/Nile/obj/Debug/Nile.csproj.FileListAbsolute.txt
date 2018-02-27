@@ -1,0 +1,12 @@
+C:\Users\william.faglie408\Source\Repos\ITSE1430\Classwork\Section2\Nile\bin\Debug\Nile.dll
+C:\Users\william.faglie408\Source\Repos\ITSE1430\Classwork\Section2\Nile\bin\Debug\Nile.pdb
+C:\Users\william.faglie408\Source\Repos\ITSE1430\Classwork\Section2\Nile\obj\Debug\Nile.csprojResolveAssemblyReference.cache
+C:\Users\william.faglie408\Source\Repos\ITSE1430\Classwork\Section2\Nile\obj\Debug\Nile.csproj.CoreCompileInputs.cache
+C:\Users\william.faglie408\Source\Repos\ITSE1430\Classwork\Section2\Nile\obj\Debug\Nile.dll
+C:\Users\william.faglie408\Source\Repos\ITSE1430\Classwork\Section2\Nile\obj\Debug\Nile.pdb
+C:\Users\william.faglie408\source\repos\ITSE1430\Classwork\Section3\Nile\obj\Debug\Nile.csprojResolveAssemblyReference.cache
+C:\Users\william.faglie408\source\repos\ITSE1430\Classwork\Section3\Nile\obj\Debug\Nile.csproj.CoreCompileInputs.cache
+C:\Users\william.faglie408\source\repos\ITSE1430\Classwork\Section3\Nile\obj\Debug\Nile.dll
+C:\Users\william.faglie408\source\repos\ITSE1430\Classwork\Section3\Nile\obj\Debug\Nile.pdb
+C:\Users\william.faglie408\source\repos\ITSE1430\Classwork\Section3\Nile\bin\Debug\Nile.dll
+C:\Users\william.faglie408\source\repos\ITSE1430\Classwork\Section3\Nile\bin\Debug\Nile.pdb
