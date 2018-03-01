@@ -12,7 +12,7 @@ namespace Nile
         /// <summary>Gets or sets the id.</summary>
         public int Id { get; set; }
 
-        private decimal DiscountPercentage = 10M;
+        private decimal _discountPercentage = 10M;
 
         public string Description
         {
@@ -46,7 +46,7 @@ namespace Nile
         {
             get {
                 if (IsDiscontinued)
-                    return Price - (Price * DiscountPercentage);
+                    return Price - (Price * _discountPercentage);
 
                 return Price;
             }

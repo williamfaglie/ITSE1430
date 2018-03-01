@@ -81,6 +81,8 @@ namespace Nile.Windows
             if (!String.IsNullOrEmpty(message))
                 MessageBox.Show(message);
 
+            RefreshUI();
+
             //var index = FindEmptyProductIndex();
             //    if (index >= 0)
             //        _products[index] = form.Product;
@@ -93,9 +95,8 @@ namespace Nile.Windows
             //if (index < 0)
             //    return;
 
-            //Get the first product
-            var products = _database.GetAll();
-            var product = (products.Length > 0) ? products[0] : null;
+            //Get the selected product
+            var product = GetSelectedProduct();
             if (product == null)
                 return;
 
@@ -105,13 +106,14 @@ namespace Nile.Windows
             //Remove product
             _database.Remove(product.Id);
             //_products[index] = null;
+
+            RefreshUI();
         }
 
         private void OnProductEdit( object sender, EventArgs e )
         {
-            //Get the first product
-            var products = _database.GetAll();
-            var product = (products.Length > 0) ? products[0] : null;
+            //Get selected product
+            var product = GetSelectedProduct();
             if (product == null)
                 return;
 
@@ -127,9 +129,12 @@ namespace Nile.Windows
                 return;
 
             //Update the product
+            form.Product.Id = product.Id;
             _database.Edit(form.Product, out var message);
             if (!String.IsNullOrEmpty(message))
                 MessageBox.Show(message);
+
+            RefreshUI();
         }
 
         private void OnFileExit( object sender, EventArgs e )
@@ -147,6 +152,14 @@ namespace Nile.Windows
              return MessageBox.Show(this, message, title, MessageBoxButtons.YesNo, MessageBoxIcon.Question)
                  == DialogResult.Yes;
          }
+
+        private Product GetSelectedProduct ()
+        {
+            if (dataGridView1.SelectedRows.Count > 0)
+            return dataGridView1.SelectedRows[0].DataBoundItem as Product;
+
+            return null;
+        }
 
 
         private MemoryProductDatabase _database = new MemoryProductDatabase();
