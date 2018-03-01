@@ -1,0 +1,14 @@
+C:\Users\faglwill\source\repos\ITSE1430\Labs\Lab2\Nile.Windows\bin\Debug\Nile.Windows.exe.config
+C:\Users\faglwill\source\repos\ITSE1430\Labs\Lab2\Nile.Windows\bin\Debug\Nile.Windows.exe
+C:\Users\faglwill\source\repos\ITSE1430\Labs\Lab2\Nile.Windows\bin\Debug\Nile.Windows.pdb
+C:\Users\faglwill\source\repos\ITSE1430\Labs\Lab2\Nile.Windows\bin\Debug\Nile.dll
+C:\Users\faglwill\source\repos\ITSE1430\Labs\Lab2\Nile.Windows\bin\Debug\Nile.pdb
+C:\Users\faglwill\source\repos\ITSE1430\Labs\Lab2\Nile.Windows\obj\Debug\MovieLib.Windows.csprojResolveAssemblyReference.cache
+C:\Users\faglwill\source\repos\ITSE1430\Labs\Lab2\Nile.Windows\obj\Debug\Nile.Windows.MainForm.resources
+C:\Users\faglwill\source\repos\ITSE1430\Labs\Lab2\Nile.Windows\obj\Debug\Nile.Windows.Properties.Resources.resources
+C:\Users\faglwill\source\repos\ITSE1430\Labs\Lab2\Nile.Windows\obj\Debug\MovieLib.Windows.csproj.GenerateResource.Cache
+C:\Users\faglwill\source\repos\ITSE1430\Labs\Lab2\Nile.Windows\obj\Debug\MovieLib.Windows.csproj.CoreCompileInputs.cache
+C:\Users\faglwill\source\repos\ITSE1430\Labs\Lab2\Nile.Windows\obj\Debug\Nile.Windows.exe
+C:\Users\faglwill\source\repos\ITSE1430\Labs\Lab2\Nile.Windows\obj\Debug\Nile.Windows.pdb
+C:\Users\faglwill\source\repos\ITSE1430\Labs\Lab2\Nile.Windows\obj\Debug\Nile.Windows.MovieDetailForm.resources
+C:\Users\faglwill\source\repos\ITSE1430\Labs\Lab2\Nile.Windows\obj\Debug\Nile.Windows.OnHelpAbout.resources

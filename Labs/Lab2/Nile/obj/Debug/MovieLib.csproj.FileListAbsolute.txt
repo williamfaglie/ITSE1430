@@ -1,0 +1,6 @@
+C:\Users\faglwill\source\repos\ITSE1430\Labs\Lab2\Nile\bin\Debug\Nile.dll
+C:\Users\faglwill\source\repos\ITSE1430\Labs\Lab2\Nile\bin\Debug\Nile.pdb
+C:\Users\faglwill\source\repos\ITSE1430\Labs\Lab2\Nile\obj\Debug\MovieLib.csproj.CoreCompileInputs.cache
+C:\Users\faglwill\source\repos\ITSE1430\Labs\Lab2\Nile\obj\Debug\Nile.dll
+C:\Users\faglwill\source\repos\ITSE1430\Labs\Lab2\Nile\obj\Debug\Nile.pdb
+C:\Users\faglwill\source\repos\ITSE1430\Labs\Lab2\Nile\obj\Debug\MovieLib.csprojResolveAssemblyReference.cache

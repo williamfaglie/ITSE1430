@@ -1,0 +1,13 @@
+C:\Users\faglwill\Source\Repos\ITSE1430\Classwork\Section2\Nile.Windows\bin\Debug\Nile.Windows.exe.config
+C:\Users\faglwill\Source\Repos\ITSE1430\Classwork\Section2\Nile.Windows\bin\Debug\Nile.Windows.exe
+C:\Users\faglwill\Source\Repos\ITSE1430\Classwork\Section2\Nile.Windows\bin\Debug\Nile.Windows.pdb
+C:\Users\faglwill\Source\Repos\ITSE1430\Classwork\Section2\Nile.Windows\bin\Debug\Nile.dll
+C:\Users\faglwill\Source\Repos\ITSE1430\Classwork\Section2\Nile.Windows\bin\Debug\Nile.pdb
+C:\Users\faglwill\Source\Repos\ITSE1430\Classwork\Section2\Nile.Windows\obj\Debug\Nile.Windows.csprojResolveAssemblyReference.cache
+C:\Users\faglwill\Source\Repos\ITSE1430\Classwork\Section2\Nile.Windows\obj\Debug\Nile.Windows.MainForm.resources
+C:\Users\faglwill\Source\Repos\ITSE1430\Classwork\Section2\Nile.Windows\obj\Debug\Nile.Windows.ProductDetailForm.resources
+C:\Users\faglwill\Source\Repos\ITSE1430\Classwork\Section2\Nile.Windows\obj\Debug\Nile.Windows.Properties.Resources.resources
+C:\Users\faglwill\Source\Repos\ITSE1430\Classwork\Section2\Nile.Windows\obj\Debug\Nile.Windows.csproj.GenerateResource.Cache
+C:\Users\faglwill\Source\Repos\ITSE1430\Classwork\Section2\Nile.Windows\obj\Debug\Nile.Windows.csproj.CoreCompileInputs.cache
+C:\Users\faglwill\Source\Repos\ITSE1430\Classwork\Section2\Nile.Windows\obj\Debug\Nile.Windows.exe
+C:\Users\faglwill\Source\Repos\ITSE1430\Classwork\Section2\Nile.Windows\obj\Debug\Nile.Windows.pdb
