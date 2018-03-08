@@ -103,7 +103,7 @@
             // 
             this._miProductEdit.Name = "_miProductEdit";
             this._miProductEdit.Size = new System.Drawing.Size(152, 22);
-            this._miProductEdit.Text = "&Edit";
+            this._miProductEdit.Text = "&Update";
             this._miProductEdit.Click += new System.EventHandler(this.OnProductEdit);
             // 
             // toolStripSeparator1

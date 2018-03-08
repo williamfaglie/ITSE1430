@@ -81,13 +81,13 @@ namespace Nile
             //Name is required
             if (String.IsNullOrEmpty(_name))
                 errors.Add(new ValidationResult("Name cannot be empty", 
-                            new[] { "Name" }));
+                            new[] { nameof(Name) }));
 
 
             //Price >= 0
             if (Price < 0)
                 errors.Add(new ValidationResult("Price must be >= 0",
-                            new[] { "Price" }));
+                            new[] { nameof(Price) }));
 
             return errors;
         }

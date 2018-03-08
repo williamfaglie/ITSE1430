@@ -24,10 +24,10 @@ namespace Nile.Windows
             Text = title;
         }
 
-        public ProductDetailForm( Product product) : this("Edit Product")
+        public ProductDetailForm( Product product) : this("Update Product")
         {
             //InitializeComponent();
-            //Text = "Edit Product";
+            //Text = "Update Product";
 
             Product = product;
         }
@@ -89,11 +89,12 @@ namespace Nile.Windows
                 IsDiscontinued = _checkIsDiscontinued.Checked,
             };
 
-            //Validate
-            var message = product.Validate();
-            if (!String.IsNullOrEmpty(message))
+            //Validate product using IValidatableObject
+            var errors = ObjectValidator.Validate(product);
+            if (errors.Count() > 0)
             {
-                DisplayError(message);
+                //Get first error
+                DisplayError(errors.ElementAt(0).ErrorMessage);
                 return;
             };
             //    return;
