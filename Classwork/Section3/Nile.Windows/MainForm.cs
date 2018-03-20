@@ -32,7 +32,8 @@ namespace Nile.Windows
             var products = _database.GetAll();
 
             //Bind to grid
-            dataGridView1.DataSource = new List<Product>(products);
+            productBindingSource.DataSource = new List<Product>(products);
+            //dataGridView1.DataSource
         }
 
         private void PlayingWithProductMembers ()
