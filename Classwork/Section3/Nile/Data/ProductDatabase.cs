@@ -49,12 +49,22 @@ namespace Nile.Data
         };
 
         //Validate product
-        var errors = ObjectValidator.Validate(product);
-        if (errors.Count() > 0)
-        {
-            message = errors.ElementAt(0).ErrorMessage;
-            return null;
-        };
+        var errors = product.Validate();
+        //var errors = ObjectValidator.Validate(product);
+            //if (errors.Count() > 0)
+            //{
+            //    var error = Enumerable.First(errors);
+
+            //    //Get first error
+            //    message = errors.ElementAt(0).ErrorMessage;
+            //    return null;
+            //};var errors = errors.FirstPrDefault();
+            var error = errors.FirstOrDefault();
+        if (error != null)
+            {
+                message = error.ErrorMessage;
+                return null;
+            };
 
         // Verify unique product
         var existing = GetProductByNameCore(product.Name);
