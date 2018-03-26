@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Nile
+namespace WilliamFaglie.MovieLib
 {
     /// <summary>Provides information about a product.</summary>
-    public class Movie
+    public class Movie : IValidatableObject
     {
         /// <summary>Gets or sets the description.</summary>
         public string Description
