@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using WilliamFaglie.MovieLib;
 
 /// <summary>Allows you to edit and add movies.</summary>
 namespace Nile.Windows
@@ -28,13 +29,13 @@ namespace Nile.Windows
         }
 
         /// <summary>Creates a movie.</summary>
-        /// <param name="product"></param>
-        public MovieDetailForm( Movie product) : this("Edit Product")
+        /// <param name="movie"></param>
+        public MovieDetailForm( Movie movie) : this("Update Product")
         {
-            Product = product;
+            Movie = movie;
         }
 
-        public Movie Product { get; set; }
+        public Movie Movie { get; set; }
 
         /// <summary>Controls loading.</summary>
         protected override void OnLoad( EventArgs e )
@@ -42,13 +43,13 @@ namespace Nile.Windows
             //Call base type
             base.OnLoad(e);
 
-            //Load product
-            if (Product != null)
+            //Load movie
+            if (Movie != null)
             {
-                _txtTitle.Text = Product.Name;
-                _txtDescription.Text = Product.Description;
-                _txtLength.Text = Product.Price.ToString();
-                _checkIsOwned.Checked = Product.IsDiscontinued;
+                _txtTitle.Text = Movie.Title;
+                _txtDescription.Text = Movie.Description;
+                _txtLength.Text = Movie.Length.ToString();
+                _checkIsOwned.Checked = Movie.IsOwned;
             };
 
             ValidateChildren();
@@ -83,22 +84,24 @@ namespace Nile.Windows
 
 
             // Create product
-            var movie = new Movie();
-            movie.Name = _txtTitle.Text;
-            movie.Description = _txtDescription.Text;
-            movie.Price = ConvertToPrice(_txtLength);
-            movie.IsDiscontinued = _checkIsOwned.Checked;
+            var movie = new Movie() {
+                Title = _txtTitle.Text,
+                Description = _txtDescription.Text,
+                Length = ConvertToLength(_txtLength),
+                IsOwned = _checkIsOwned.Checked,
+            };
 
             //Validate
-            var message = movie.Validate();
-            if (!String.IsNullOrEmpty(message))
+            var errors = ObjectValidator.Validate(movie);
+            if (errors.Count() > 0)
             {
-                DisplayError(message);
+                //Get first error
+                DisplayError(errors.ElementAt(0).ErrorMessage);
                 return;
             };
 
             //Return form form
-            Product = movie;
+            Movie = movie;
             DialogResult = DialogResult.OK;
             Close();
         }
@@ -119,7 +122,7 @@ namespace Nile.Windows
         }
 
         /// <summary>Converts to price.</summary>
-        private decimal ConvertToPrice( TextBox control )
+        private decimal ConvertToLength( TextBox control )
         {
             if (Decimal.TryParse(control.Text, out var price))
                 return price;
@@ -128,13 +131,13 @@ namespace Nile.Windows
         }
 
         /// <summary>Validation.</summary>
-        private void _txtName_Validating( object sender, CancelEventArgs e )
+        private void _txtTitle_Validating( object sender, CancelEventArgs e )
         {
             var textbox = sender as TextBox;
 
             if (String.IsNullOrEmpty(textbox.Text))
             {
-                _errorProvider.SetError(textbox, "Name is required");
+                _errorProvider.SetError(textbox, "Title is required");
                 e.Cancel = true;
             } else
                 _errorProvider.SetError(textbox, "");
@@ -145,10 +148,10 @@ namespace Nile.Windows
         {
             var textbox = sender as TextBox;
 
-            var price = ConvertToPrice(textbox);
-            if (price < 0)
+            var length = ConvertToLength(textbox);
+            if (length < 0)
             {
-                _errorProvider.SetError(textbox, "Price must be >= 0");
+                _errorProvider.SetError(textbox, "Length must be >= 0");
                 e.Cancel = true;
             } else
                 _errorProvider.SetError(textbox, "");

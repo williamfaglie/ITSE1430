@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace WilliamFaglie.MovieLib.Data
 {
-    class IMovieDatabase
+    public interface IMovieDatabase
     {
-        Product Add( Product product, out string message );
-        Product Update( Product product, out string message );
-        IEnumerable<Product> GetAll();
+        Movie Add( Movie movie, out string message );
+        Movie Update( Movie movie, out string message );
+        IEnumerable<Movie> GetAll();
         void Remove( int id );
     }
 }

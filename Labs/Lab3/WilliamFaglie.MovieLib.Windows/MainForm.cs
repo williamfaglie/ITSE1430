@@ -7,108 +7,167 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using WilliamFaglie.MovieLib;
+using WilliamFaglie.MovieLib.Data;
+using WilliamFaglie.MovieLib.Data.Memory;
 
 /// <summary>Opening form to movie-add, movie-edit, movie-remove, file-exit, and help-about</summary>
 namespace Nile.Windows
 {
     public partial class MainForm : Form
     {
-        /// <summary>Constructor.</summary>
         public MainForm()
         {
             InitializeComponent();
         }
 
-        /// <summary>Loads form.</summary>
         protected override void OnLoad( EventArgs e )
         {
             base.OnLoad(e);
+
+            RefreshUI();
         }
 
-        /// <summary>Controls form for adding movie.</summary>
+        private void RefreshUI()
+        {
+            //Get products
+            var movies = _database.GetAll();
+
+            //Bind to grid
+            //productBindingSource.DataSource = new List<Product>(products);
+            //productBindingSource.DataSource = Enumerable.ToList(products);
+            movieBindingSource.DataSource = movies.ToList();
+            //dataGridView1.DataSource
+        }
+
         private void OnProductAdd( object sender, EventArgs e )
         {
             var button = sender as ToolStripMenuItem;
 
-            var form = new MovieDetailForm("Add Movie");
+            var form = new MovieDetailForm("Add Product");
+            //form.Text = "Add Product";
 
             //Show form modally
             var result = form.ShowDialog(this);
             if (result != DialogResult.OK)
                 return;
 
-            //"Add" the movie
-            _movie = form.Product;
+            //Add to database
+            _database.Add(form.Movie, out var message);
+            if (!String.IsNullOrEmpty(message))
+                MessageBox.Show(message);
+
+            RefreshUI();
+
+            //var index = FindEmptyProductIndex();
+            //    if (index >= 0)
+            //        _products[index] = form.Product;
+
         }
 
-        /// <summary>Controls form for removing movie.</summary>
         private void OnProductRemove( object sender, EventArgs e )
         {
-            if (_movie == null)
+            //Get the selected product
+            var product = GetSelectedMovie();
+            if (product == null)
             {
-                MessageBox.Show(this, "No Movies to Delete", "Delete", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("No products selected", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
-            }
+            };
 
-            var name = Name;
-
-            if (!ShowConfirmation(String.Format("Are you sure you want to delete {0}", name) + "?", "Remove Movie"))
-                return;
-            
-            //Remove product
-            _movie = null;
+            DeleteMovie(movie);
         }
 
-        /// <summary>Controls form for editing movie.</summary>
+        private void DeleteMovie( Movie movie )
+        {
+            if (!ShowConfirmation("Are you sure?", "Remove Movie"))
+                return;
+
+            //Remove product
+            _database.Remove(movie.Id);
+
+            RefreshUI();
+        }
+
         private void OnProductEdit( object sender, EventArgs e )
         {
-            if (_movie == null)
+            //Get selected product
+            var product = GetSelectedMovie();
+            if (product == null)
             {
-                MessageBox.Show(this, "No Movies to Edit", "Edit", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("No products selected", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
-            }
+            };
+            EditMovie(product);
+        }
 
-            var form = new MovieDetailForm(_movie);
-
-            //Show form modally
+        private void EditMovie( Movie movie )
+        {
+            var form = new MovieDetailForm(movie);
             var result = form.ShowDialog(this);
             if (result != DialogResult.OK)
                 return;
 
-            //"Editing" the product
-            _movie = form.Product;
+            //Update the movie
+            form.Movie.Id = movie.Id;
+            _database.Update(form.Movie, out var message);
+            if (!String.IsNullOrEmpty(message))
+                MessageBox.Show(message);
+
+            RefreshUI();
         }
 
-        /// <summary>Controls exiting.</summary>
         private void OnFileExit( object sender, EventArgs e )
         {
             Close();
         }
 
-        /// <summary>Controls about page.</summary>
         private void OnHelpAbout( object sender, EventArgs e )
         {
-            var form = new OnHelpAbout();
-
-            var result = form.ShowDialog(this);
-            if (result != DialogResult.OK)
-                return;
+            MessageBox.Show(this, "Not Implemented", "Help About", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
         }
 
-        /// <summary>Controls confirmation dialog.</summary>
         private bool ShowConfirmation( string message, string title )
         {
             return MessageBox.Show(this, message, title, MessageBoxButtons.YesNo, MessageBoxIcon.Question)
                 == DialogResult.Yes;
         }
 
-
-        private Movie _movie;
-
-        /// <summary>Controls menu strip items.</summary>
-        private void productToolStripMenuItem_Click( object sender, EventArgs e )
+        private Movie GetSelectedMovie()
         {
+            if (dataGridView1.SelectedRows.Count > 0)
+                return dataGridView1.SelectedRows[0].DataBoundItem as Movie;
 
+            return null;
+        }
+
+
+        private IMovieDatabase _database = new MemoryMovieDatabase();
+
+        private void OnCellDoubleClick( object sender, DataGridViewCellEventArgs e )
+        {
+            var movie = GetSelectedMovie();
+            if (movie == null)
+                return;
+
+            EditMovie(movie);
+        }
+
+        private void OnCellKeyDown( object sender, KeyEventArgs e )
+        {
+            var movie = GetSelectedMovie();
+            if (movie == null)
+                return;
+
+            if (e.KeyCode == Keys.Delete)
+            {
+                e.Handled = true;
+                DeleteMovie(movie);
+            } else if (e.KeyCode == Keys.Enter)
+            {
+                e.Handled = true;
+                EditMovie(movie);
+            };
         }
     }
 }
