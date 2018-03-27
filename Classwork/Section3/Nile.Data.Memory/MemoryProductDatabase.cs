@@ -71,7 +71,7 @@ namespace Nile.Data.Memory
             //    Price = 800
             //};
             //_products.Add(product);
-        }
+        
         protected override Product AddCore ( Product product)
         {
             //Clone the object
