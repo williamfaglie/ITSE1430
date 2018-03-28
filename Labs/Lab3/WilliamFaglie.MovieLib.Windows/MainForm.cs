@@ -12,7 +12,7 @@ using WilliamFaglie.MovieLib.Data;
 using WilliamFaglie.MovieLib.Data.Memory;
 
 /// <summary>Opening form to movie-add, movie-edit, movie-remove, file-exit, and help-about</summary>
-namespace Nile.Windows
+namespace WilliamFaglie.MovieLib.Windows
 {
     public partial class MainForm : Form
     {
@@ -68,10 +68,10 @@ namespace Nile.Windows
         private void OnProductRemove( object sender, EventArgs e )
         {
             //Get the selected product
-            var product = GetSelectedMovie();
-            if (product == null)
+            var movie = GetSelectedMovie();
+            if (movie == null)
             {
-                MessageBox.Show("No products selected", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("No movies selected", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             };
 

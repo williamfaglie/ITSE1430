@@ -1,4 +1,4 @@
-﻿namespace Nile.Windows
+﻿namespace WilliamFaglie.MovieLib.Windows
 {
     partial class MovieDetailForm
     {
@@ -45,18 +45,18 @@
             // 
             // _txtTitle
             // 
-            this._txtTitle.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this._txtTitle.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this._txtTitle.Location = new System.Drawing.Point(81, 55);
             this._txtTitle.Name = "_txtTitle";
             this._txtTitle.Size = new System.Drawing.Size(320, 20);
             this._txtTitle.TabIndex = 0;
-            this._txtTitle.Validating += new System.ComponentModel.CancelEventHandler(this._txtName_Validating);
+            this._txtTitle.Validating += new System.ComponentModel.CancelEventHandler(this._txtTitle_Validating);
             // 
             // _txtDescription
             // 
-            this._txtDescription.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this._txtDescription.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this._txtDescription.Location = new System.Drawing.Point(81, 81);
             this._txtDescription.Multiline = true;

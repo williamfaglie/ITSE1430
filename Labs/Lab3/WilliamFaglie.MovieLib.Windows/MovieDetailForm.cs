@@ -10,7 +10,7 @@ using System.Windows.Forms;
 using WilliamFaglie.MovieLib;
 
 /// <summary>Allows you to edit and add movies.</summary>
-namespace Nile.Windows
+namespace WilliamFaglie.MovieLib.Windows
 {
     public partial class MovieDetailForm : Form
     {

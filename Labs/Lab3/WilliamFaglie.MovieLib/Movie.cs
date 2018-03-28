@@ -13,13 +13,6 @@ namespace WilliamFaglie.MovieLib
         /// <summary>Gets or sets the id.</summary>
         public int Id { get; set; }
 
-        /// <summary>Gets or sets the description.</summary>
-        public string Description
-        {
-            get { return _description ?? ""; }
-            set { _description = value ?? ""; }
-        }
-
         /// <summary>Gets or sets the name.</summary>
         public string Title
         {
@@ -27,6 +20,14 @@ namespace WilliamFaglie.MovieLib
             set { _title = value; }
         }
 
+        /// <summary>Gets or sets the description.</summary>
+        public string Description
+        {
+            get { return _description ?? ""; }
+            set { _description = value ?? ""; }
+        }
+
+       
         /// <summary>Getter and setter for length.</summary>
         public decimal Length
         {
