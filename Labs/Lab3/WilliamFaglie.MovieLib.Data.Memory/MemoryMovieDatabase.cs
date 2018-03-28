@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace WilliamFaglie.MovieLib.Data.Memory
 {
+    /// <summary>Provides an in-memory movie database.</summary>
     public class MemoryMovieDatabase : MovieDatabase
     {
 
@@ -19,42 +20,15 @@ namespace WilliamFaglie.MovieLib.Data.Memory
             return movie;
         }
 
-        //private int FindEmptyProductIndex()
-        //{
-        //    for (var index = 0; index < _products.Length; ++index)
-        //    {
-        //        if (_products[index] == null)
-        //            return index;
-
-        //    };
-
-        //    return -1;
-        //}
         protected override Movie UpdateCore( Movie movie )
         {
             //Clone the object
             var existing = GetCore(movie.Id);
-            //_products[existingIndex] = Clone(product);
             Copy(existing, movie);
 
             //Return a copy
             return movie;
         }
-
-        //public IEnumerable<Product> GetAll ()
-        //{
-        //    //Return a copy so caller 
-        //    var items = new List<Product>();
-
-        //    //for (var index = 0; index < _products.Length; ++index)
-        //    foreach (var product in _products)
-        //    {
-        //        if (product != null)
-        //            items.Add(Clone(product));
-        //    };
-
-        //    return items;
-        //}
 
         protected override IEnumerable<Movie> GetAllCore()
         {
@@ -91,7 +65,6 @@ namespace WilliamFaglie.MovieLib.Data.Memory
 
         protected override Movie GetCore( int id )
         {
-            //for (var index = 0; index < _products.Length; ++index)
             foreach (var movie in _movies)
             {
                 if (movie.Id == id)
@@ -105,7 +78,6 @@ namespace WilliamFaglie.MovieLib.Data.Memory
         {
             foreach (var movie in _movies)
             {
-                //product.Name.CompareTo
                 if (String.Compare(movie.Title, title, true) == 0)
                     return movie;
             };
@@ -114,7 +86,6 @@ namespace WilliamFaglie.MovieLib.Data.Memory
         }
         private Movie GetById( int id )
         {
-            //for (var index = 0; index < _products.Length; ++index)
             foreach (var movie in _movies)
             {
                 if (movie.Id == id)

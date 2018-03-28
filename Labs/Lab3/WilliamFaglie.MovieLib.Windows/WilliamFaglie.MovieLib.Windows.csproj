@@ -58,6 +58,12 @@
     <Compile Include="MovieDetailForm.designer.cs">
       <DependentUpon>MovieDetailForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="OnHelpAboutForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OnHelpAboutForm.designer.cs">
+      <DependentUpon>OnHelpAboutForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="MainForm.resx">
@@ -65,6 +71,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MovieDetailForm.resx">
       <DependentUpon>MovieDetailForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OnHelpAboutForm.resx">
+      <DependentUpon>OnHelpAboutForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

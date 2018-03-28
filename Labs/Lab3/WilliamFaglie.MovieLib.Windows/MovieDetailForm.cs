@@ -9,9 +9,10 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using WilliamFaglie.MovieLib;
 
-/// <summary>Allows you to edit and add movies.</summary>
+
 namespace WilliamFaglie.MovieLib.Windows
 {
+    /// <summary>Allows you to edit and add movies.</summary>
     public partial class MovieDetailForm : Form
     {
         /// <summary>Initializes the form. Constructor.</summary>
@@ -35,9 +36,9 @@ namespace WilliamFaglie.MovieLib.Windows
             Movie = movie;
         }
 
+        /// <summary>Creates movie object.</summary>
         public Movie Movie { get; set; }
 
-        /// <summary>Controls loading.</summary>
         protected override void OnLoad( EventArgs e )
         {
             //Call base type
@@ -55,27 +56,21 @@ namespace WilliamFaglie.MovieLib.Windows
             ValidateChildren();
         }
 
-        /// <summary>Controls description.</summary>
         private void _txtDescription_TextChanged( object sender, EventArgs e )
         {
 
         }
 
-        /// <summary>Controls clicks.</summary>
         private void label2_Click( object sender, EventArgs e )
         {
 
         }
 
-        /// <summary>Controls what happens when cancel is clicked.</summary>
         private void OnCancel( object sender, EventArgs e )
         {
             
         }
 
-        /// <summary>Controls what happens when Save is clicked.</summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
         private void OnSave( object sender, EventArgs e )
         {
             //Force validation of child controls
@@ -106,14 +101,11 @@ namespace WilliamFaglie.MovieLib.Windows
             Close();
         }
 
-        /// <summary>Displays error.</summary>
         private void DisplayError( object message )
         {
             throw new NotImplementedException();
         }
 
-        /// <summary>Displays error.</summary>
-        /// <param name="message"></param>
         private void DisplayError ( string message )
         {
             MessageBox.Show(this, message, "Error", MessageBoxButtons.OK,
@@ -121,7 +113,6 @@ namespace WilliamFaglie.MovieLib.Windows
 
         }
 
-        /// <summary>Converts to price.</summary>
         private decimal ConvertToLength( TextBox control )
         {
             if (Decimal.TryParse(control.Text, out var price))
@@ -130,7 +121,6 @@ namespace WilliamFaglie.MovieLib.Windows
             return 0;
         }
 
-        /// <summary>Validation.</summary>
         private void _txtTitle_Validating( object sender, CancelEventArgs e )
         {
             var textbox = sender as TextBox;
@@ -143,7 +133,6 @@ namespace WilliamFaglie.MovieLib.Windows
                 _errorProvider.SetError(textbox, "");
         }
 
-        /// <summary>Validation.</summary>
         private void _txtPrice_Validating( object sender, CancelEventArgs e )
         {
             var textbox = sender as TextBox;

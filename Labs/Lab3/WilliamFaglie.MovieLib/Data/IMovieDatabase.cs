@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace WilliamFaglie.MovieLib.Data
 {
+    /// <summary>Interface movie database.</summary>
     public interface IMovieDatabase
     {
         Movie Add( Movie movie, out string message );

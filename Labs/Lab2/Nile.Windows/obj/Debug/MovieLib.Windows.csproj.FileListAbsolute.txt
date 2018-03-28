@@ -12,3 +12,4 @@ C:\Users\faglwill\source\repos\ITSE1430\Labs\Lab2\Nile.Windows\obj\Debug\Nile.Wi
 C:\Users\faglwill\source\repos\ITSE1430\Labs\Lab2\Nile.Windows\obj\Debug\Nile.Windows.pdb
 C:\Users\faglwill\source\repos\ITSE1430\Labs\Lab2\Nile.Windows\obj\Debug\Nile.Windows.MovieDetailForm.resources
 C:\Users\faglwill\source\repos\ITSE1430\Labs\Lab2\Nile.Windows\obj\Debug\Nile.Windows.OnHelpAbout.resources
+C:\Users\faglwill\source\repos\ITSE1430\Labs\Lab2\Nile.Windows\obj\Debug\MovieLib.Windows.csproj.CopyComplete

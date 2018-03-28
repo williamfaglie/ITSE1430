@@ -9,9 +9,12 @@ using System.Threading.Tasks;
 
 namespace WilliamFaglie.MovieLib
 {
+    /// <summary>Enforces Validation.</summary>
     public static class ObjectValidator
     {
-        
+        /// <summary>Enumerates through database to determine any errors.</summary>
+        /// <param name="source"></param>
+        /// <returns></returns>
             public static IEnumerable<ValidationResult> Validate( this IValidatableObject source )
             {
                 var context = new ValidationContext(source);

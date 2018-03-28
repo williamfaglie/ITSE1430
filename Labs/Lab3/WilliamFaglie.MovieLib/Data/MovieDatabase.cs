@@ -6,33 +6,13 @@ using System.Threading.Tasks;
 
 namespace WilliamFaglie.MovieLib.Data
 {
+    /// <summary>Provides an in-memory movie database.</summary>
     public abstract class MovieDatabase : IMovieDatabase
     {
-        //var product = new Product() {
-        //    Id = _nextId++,
-        //    Name = "iPhone X",
-        //    IsDiscontinued = true,
-        //    Price = 1500,
-        //};
-        //_products.Add(product);
-
-
-        //product = new Product() {
-        //    Id = _nextId++,
-        //    Name = "Windows Phone",
-        //    IsDiscontinued = true,
-        //    Price = 15,
-        //};
-        //_products.Add(product);
-
-        //product = new Product() {
-        //    Id = _nextId++,
-        //    Name = "Samsung S8",
-        //    IsDiscontinued = false,
-        //    Price = 800
-        //};
-        //_products.Add(product);
-
+        /// <summary>Adds movie if it passes validation.</summary>
+        /// <param name="movie"></param>
+        /// <param name="message"></param>
+        /// <returns></returns>
         public Movie Add( Movie movie, out string message )
         {
             //Check for null
@@ -42,17 +22,8 @@ namespace WilliamFaglie.MovieLib.Data
                 return null;
             };
 
-            //Validate product
+            //Validate movie
             var errors = movie.Validate();
-            //var errors = ObjectValidator.Validate(product);
-            //if (errors.Count() > 0)
-            //{
-            //    var error = Enumerable.First(errors);
-
-            //    //Get first error
-            //    message = errors.ElementAt(0).ErrorMessage;
-            //    return null;
-            //};var errors = errors.FirstPrDefault();
             var error = errors.FirstOrDefault();
             if (error != null)
             {
@@ -60,7 +31,7 @@ namespace WilliamFaglie.MovieLib.Data
                 return null;
             };
 
-            // Verify unique product
+            // Verify unique movie
             var existing = GetMovieByTitleCore(movie.Title);
             if (existing != null)
             {
@@ -72,17 +43,10 @@ namespace WilliamFaglie.MovieLib.Data
             return AddCore(movie);
         }
 
-        //private int FindEmptyProductIndex()
-        //{
-        //    for (var index = 0; index < _products.Length; ++index)
-        //    {
-        //        if (_products[index] == null)
-        //            return index;
-
-        //    };
-
-        //    return -1;
-        //}
+        /// <summary>Updates movie if it passes validation.</summary>
+        /// <param name="movie"></param>
+        /// <param name="message"></param>
+        /// <returns></returns>
         public Movie Update( Movie movie, out string message )
         {
             message = "";
@@ -94,7 +58,7 @@ namespace WilliamFaglie.MovieLib.Data
                 return null;
             };
 
-            //Validate product
+            //Validate movie
             var errors = ObjectValidator.Validate(movie);
             if (errors.Count() > 0)
             {
@@ -122,26 +86,15 @@ namespace WilliamFaglie.MovieLib.Data
             return UpdateCore(movie);
         }
 
-        //public IEnumerable<Product> GetAll ()
-        //{
-        //    //Return a copy so caller 
-        //    var items = new List<Product>();
-
-        //    //for (var index = 0; index < _products.Length; ++index)
-        //    foreach (var product in _products)
-        //    {
-        //        if (product != null)
-        //            items.Add(Clone(product));
-        //    };
-
-        //    return items;
-        //}
-
+        /// <summary>Gets all movies in the database.</summary>
+        /// <returns></returns>
         public IEnumerable<Movie> GetAll()
         {
             return GetAllCore();
         }
 
+        /// <summary>Removes movie based on id.</summary>
+        /// <param name="id"></param>
         public void Remove( int id )
         {
             if (id > 0)
@@ -154,7 +107,6 @@ namespace WilliamFaglie.MovieLib.Data
 
 
         private readonly List<Movie> _movies = new List<Movie>();
-        //private int _nextId = 1;
 
         protected abstract Movie AddCore( Movie movie );
         protected abstract IEnumerable<Movie> GetAllCore();

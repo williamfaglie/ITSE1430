@@ -11,11 +11,13 @@ using WilliamFaglie.MovieLib;
 using WilliamFaglie.MovieLib.Data;
 using WilliamFaglie.MovieLib.Data.Memory;
 
-/// <summary>Opening form to movie-add, movie-edit, movie-remove, file-exit, and help-about</summary>
+
 namespace WilliamFaglie.MovieLib.Windows
 {
+    /// <summary>Opening form to movie-add, movie-edit, movie-remove, file-exit, and help-about</summary>
     public partial class MainForm : Form
     {
+        /// <summary>Initializes MainForm.</summary>
         public MainForm()
         {
             InitializeComponent();
@@ -33,11 +35,7 @@ namespace WilliamFaglie.MovieLib.Windows
             //Get products
             var movies = _database.GetAll();
 
-            //Bind to grid
-            //productBindingSource.DataSource = new List<Product>(products);
-            //productBindingSource.DataSource = Enumerable.ToList(products);
             movieBindingSource.DataSource = movies.ToList();
-            //dataGridView1.DataSource
         }
 
         private void OnProductAdd( object sender, EventArgs e )
@@ -45,7 +43,6 @@ namespace WilliamFaglie.MovieLib.Windows
             var button = sender as ToolStripMenuItem;
 
             var form = new MovieDetailForm("Add Product");
-            //form.Text = "Add Product";
 
             //Show form modally
             var result = form.ShowDialog(this);
@@ -58,11 +55,6 @@ namespace WilliamFaglie.MovieLib.Windows
                 MessageBox.Show(message);
 
             RefreshUI();
-
-            //var index = FindEmptyProductIndex();
-            //    if (index >= 0)
-            //        _products[index] = form.Product;
-
         }
 
         private void OnProductRemove( object sender, EventArgs e )
@@ -124,7 +116,12 @@ namespace WilliamFaglie.MovieLib.Windows
 
         private void OnHelpAbout( object sender, EventArgs e )
         {
-            MessageBox.Show(this, "Not Implemented", "Help About", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            var form = new OnHelpAboutForm();
+
+            var result = form.ShowDialog(this);
+            if (result != DialogResult.OK)
+                return;
+            //MessageBox.Show(this, "Not Implemented", "Help About", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
         }
 
         private bool ShowConfirmation( string message, string title )

@@ -41,12 +41,12 @@
             this._miHelpAbout = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.movieBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.titleDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.descriptionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lengthDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.isOwnedDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.movieBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this._mainMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.movieBindingSource)).BeginInit();
@@ -164,6 +164,10 @@
             this.dataGridView1.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.OnCellDoubleClick);
             this.dataGridView1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.OnCellKeyDown);
             // 
+            // movieBindingSource
+            // 
+            this.movieBindingSource.DataSource = typeof(WilliamFaglie.MovieLib.Movie);
+            // 
             // titleDataGridViewTextBoxColumn
             // 
             this.titleDataGridViewTextBoxColumn.DataPropertyName = "Title";
@@ -172,6 +176,7 @@
             this.titleDataGridViewTextBoxColumn.MinimumWidth = 100;
             this.titleDataGridViewTextBoxColumn.Name = "titleDataGridViewTextBoxColumn";
             this.titleDataGridViewTextBoxColumn.ReadOnly = true;
+            this.titleDataGridViewTextBoxColumn.Width = 228;
             // 
             // descriptionDataGridViewTextBoxColumn
             // 
@@ -189,14 +194,17 @@
             this.lengthDataGridViewTextBoxColumn.MinimumWidth = 50;
             this.lengthDataGridViewTextBoxColumn.Name = "lengthDataGridViewTextBoxColumn";
             this.lengthDataGridViewTextBoxColumn.ReadOnly = true;
+            this.lengthDataGridViewTextBoxColumn.Width = 114;
             // 
             // isOwnedDataGridViewCheckBoxColumn
             // 
+            this.isOwnedDataGridViewCheckBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
             this.isOwnedDataGridViewCheckBoxColumn.DataPropertyName = "IsOwned";
             this.isOwnedDataGridViewCheckBoxColumn.HeaderText = "IsOwned?";
             this.isOwnedDataGridViewCheckBoxColumn.Name = "isOwnedDataGridViewCheckBoxColumn";
             this.isOwnedDataGridViewCheckBoxColumn.ReadOnly = true;
             this.isOwnedDataGridViewCheckBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.isOwnedDataGridViewCheckBoxColumn.Width = 61;
             // 
             // idDataGridViewTextBoxColumn
             // 
@@ -205,10 +213,6 @@
             this.idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
             this.idDataGridViewTextBoxColumn.ReadOnly = true;
             this.idDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // movieBindingSource
-            // 
-            this.movieBindingSource.DataSource = typeof(WilliamFaglie.MovieLib.Movie);
             // 
             // MainForm
             // 

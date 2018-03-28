@@ -13,7 +13,7 @@ namespace WilliamFaglie.MovieLib
         /// <summary>Gets or sets the id.</summary>
         public int Id { get; set; }
 
-        /// <summary>Gets or sets the name.</summary>
+        /// <summary>Gets or sets the title.</summary>
         public string Title
         {
             get { return _title ?? ""; }
@@ -37,26 +37,24 @@ namespace WilliamFaglie.MovieLib
         /// <summary>Getter and setter for checkIsOwned.</summary>
         public bool IsOwned { get; set; }
 
-        /// <summary>Validates the product.</summary>
+        /// <summary>Validates the movie.</summary>
         /// <returns>Error message, if any.</returns>
         public IEnumerable<ValidationResult> Validate ( ValidationContext validationContext )
         {
             var errors = new List<ValidationResult>();
 
-            //Name is required
+            //Title is required
             if (String.IsNullOrEmpty(_title))
                 errors.Add(new ValidationResult("Title cannot be empty", new[] { nameof(Title) }));
 
-            //Price >= 0
+            //Length >= 0
             if (Length < 0)
                 errors.Add(new ValidationResult("Length must be >= 0", new[] { nameof(Length) }));
 
             return errors;
         }
 
-        /// <summary>Name of the product.</summary>
         private string _title;
-        /// <summary>Description of the product.</summary>
         private string _description;
     }
 }
