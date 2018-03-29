@@ -39,42 +39,26 @@ namespace Nile.Data
         //};
         //_products.Add(product);
     
-    public Product Add( Product product, out string message )
+    public Product Add( Product product )
     {
-        //Check for null
-        if (product == null)
-        {
-            message = "Product cannot be null.";
-            return null;
-        };
 
-        //Validate product
-        var errors = product.Validate();
-        //var errors = ObjectValidator.Validate(product);
-            //if (errors.Count() > 0)
-            //{
-            //    var error = Enumerable.First(errors);
+            //Check for null
+            //if (product == null)
+            //    throw new ArgumentNullException(nameof(product));
+            product = product ?? throw new ArgumentNullException(nameof(product));
 
-            //    //Get first error
-            //    message = errors.ElementAt(0).ErrorMessage;
-            //    return null;
-            //};var errors = errors.FirstPrDefault();
-            var error = errors.FirstOrDefault();
-        if (error != null)
-            {
-                message = error.ErrorMessage;
-                return null;
-            };
-
+            //Validate product
+            product.Validate();
+  
         // Verify unique product
         var existing = GetProductByNameCore(product.Name);
-        if (existing != null)
-        {
-            message = "Product already exists";
-            return null;
-        };
+            if (existing != null)
+                throw new Exception("Product already exists");
+        //{
+        //    message = "Product already exists";
+        //    return null;
+        //};
 
-        message = null;
         return AddCore(product);
     }
 
@@ -89,41 +73,45 @@ namespace Nile.Data
 
     //    return -1;
     //}
-    public Product Update( Product product, out string message )
+    public Product Update( Product product)
     {
-        message = "";
+        //message = "";
 
-        //Check for null
-        if (product == null)
-        {
-            message = "Product cannot be null.";
-            return null;
-        };
+            //Check for null
+            if (product == null)
+                throw new ArgumentNullException(nameof(product));
+            //{
+            //    message = "Product cannot be null.";
+            //    return null;
+            //};
 
-        //Validate product
-        var errors = ObjectValidator.Validate(product);
-        if (errors.Count() > 0)
-        {
-            message = errors.ElementAt(0).ErrorMessage;
-            return null;
-        };
+            //Validate product
+            product.Validate();
+        //var errors = ObjectValidator.TryValidate(product);
+        //if (errors.Count() > 0)
+        //{
+        //    message = errors.ElementAt(0).ErrorMessage;
+        //    return null;
+        //};
 
         //Verify unique product except current product
         var existing = GetProductByNameCore(product.Name);
         if (existing != null && existing.Id != product.Id)
-        {
-            message = "Product already exists";
-            return null;
-        };
+                throw new Exception("Product already exists");
+        //{
+        //    message = "Product already exists";
+        //    return null;
+        //};
 
         //Find existing
         existing = existing ?? GetCore(product.Id);
 
-        if (existing == null)
-        {
-            message = "Product not found.";
-            return null;
-        };
+            if (existing == null)
+                throw new ArgumentException("Product not found", nameof(product));
+        //{
+        //    message = "Product not found.";
+        //    return null;
+        //};
 
         return UpdateCore(product);
     }
@@ -150,10 +138,12 @@ namespace Nile.Data
 
     public void Remove( int id )
     {
-        if (id > 0)
-        {
+        if (id <= 0)
+            throw new ArgumentOutOfRangeException(nameof(id), "Id must be > 0");
+        //if (id > 0)
+        //{
             RemoveCore(id);
-        };
+        //};
     }
 
 
