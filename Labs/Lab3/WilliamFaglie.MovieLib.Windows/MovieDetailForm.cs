@@ -1,4 +1,9 @@
-﻿using System;
+﻿//////////////////////////
+//Filename: MovieDetailForm.cs
+//Author: William Faglie
+//Description: This is my MovieDetailForm class
+//////////////////////////
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;

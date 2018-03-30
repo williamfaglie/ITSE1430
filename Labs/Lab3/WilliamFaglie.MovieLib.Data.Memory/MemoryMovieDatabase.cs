@@ -1,4 +1,9 @@
-﻿using System;
+﻿//////////////////////////
+//Filename: MemoryMovieDatabase.cs
+//Author: William Faglie
+//Description: This is my MemoryMovieDatabase class
+//////////////////////////
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;

@@ -1,4 +1,9 @@
-﻿using System;
+﻿//////////////////////////
+//Filename: ObjectValidator.cs
+//Author: William Faglie
+//Description: This is my ObjectValidator class
+//////////////////////////
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;

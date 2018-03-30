@@ -1,4 +1,9 @@
-﻿using System;
+﻿//////////////////////////
+//Filename: MainForm.cs
+//Author: William Faglie
+//Description: This is my MainForm class
+//////////////////////////
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -121,7 +126,6 @@ namespace WilliamFaglie.MovieLib.Windows
             var result = form.ShowDialog(this);
             if (result != DialogResult.OK)
                 return;
-            //MessageBox.Show(this, "Not Implemented", "Help About", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
         }
 
         private bool ShowConfirmation( string message, string title )

@@ -1,4 +1,9 @@
-﻿using System;
+﻿//////////////////////////
+//Filename: Program.cs
+//Author: William Faglie
+//Description: This is my Program class
+//////////////////////////
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;

@@ -1,4 +1,9 @@
-﻿using System;
+﻿//////////////////////////
+//Filename: OnHelpAboutForm.cs
+//Author: William Faglie
+//Description: This is my OnHelpAboutForm class
+//////////////////////////
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
