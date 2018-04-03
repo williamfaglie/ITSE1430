@@ -13,19 +13,23 @@ namespace Nile
         /// <summary>Gets or sets the id.</summary>
         public int Id { get; set; }
 
-        private decimal _discountPercentage = 10M;
+        private decimal DiscountPercentage = 10M;
 
         public string Description
         {
-            get { return _description ?? ""; }
-            set { _description = value ?? ""; }
+            get => _description ?? ""; 
+            set => _description = value ?? ""; 
+            //get { return _description ?? ""; }
+            //set { _description = value ?? ""; }
         }
 
         /// <summary>Gets or sets the name.</summary>
         public string Name
         {
-            get { return _name ?? ""; }
-            set { _name = value; }
+            get => _name ?? ""; 
+            set => _name = value; 
+            //get { return _name ?? ""; }
+            //set { _name = value; }
         }
 
         //Using auto property here
@@ -42,17 +46,20 @@ namespace Nile
         //    internal set { }
         //}
 
-        /// <summary>Gets the price, with any discounted discounts.</summary>
-        public decimal ActualPrice
-        {
-            get {
-                if (IsDiscontinued)
-                    return Price - (Price * _discountPercentage);
+        private int SomeValue = 10;
+        private int SomeValue2 => 10;
 
-                return Price;
-            }
-            //set { }
-        }
+        /// <summary>Gets the price, with any discounted discounts.</summary>
+        public decimal ActualPrice => IsDiscontinued ? (Price - (Price * DiscountPercentage)) : Price;
+        //{
+        //    get { return IsDiscontinued ? (Price - (Price * DiscountPercentage)) : Price; }
+        //        {
+        //        if (IsDiscontinued)
+        //            return Price - (Price * _discountPercentage);
+
+        //        return Price;
+        //    }
+        //}
         public bool IsDiscontinued { get; set; }
         //{
         //    get { return _isDiscontinued; }
