@@ -121,11 +121,19 @@ namespace Nile.Data.Memory
 
         protected override IEnumerable<Product> GetAllCore()
         {
-            foreach (var product in _products)
-            {
-                if (product != null)
-                    yield return Clone(product);
-            };
+            // Option 3 - LINQ
+            return from p in _products
+                   select Clone(p);
+
+            // Option 2 - extension
+            //return _products.Select(p => Clone(p));
+
+            // Option 1
+            //foreach (var product in _products)
+            //{
+            //    if (product != null)
+            //        yield return Clone(product);
+            //};
         }
 
         protected override void RemoveCore ( int id )
@@ -154,26 +162,49 @@ namespace Nile.Data.Memory
 
         protected override Product GetCore ( int id )
         {
-            //for (var index = 0; index < _products.Length; ++index)
-            foreach (var product in _products)
-            {
-                if (product.Id == id)
-                    return product;
-            };
+            //Option 4 - Combo
+            return (from p in _products
+                        where p.Id == id
+                        select p).FirstOrDefault();
 
-            return null;
+            //Option 3 - LINQ
+            //var items = from p in _products
+            //            where p.Id == id
+            //            select p;
+
+            //return items.FirstOrDefault();
+
+            //Option 2 - extension method
+            //return _products.FirstOrDefault(p => p.Id == id);
+
+            //Option 1
+            //foreach (var product in _products)
+            //{
+            //    if (product.Id == id)
+            //        return product;
+            //};
+
+            //return null;
         }
 
         protected override Product GetProductByNameCore ( string name )
         {
-            foreach (var product in _products)
-            {
-                //product.Name.CompareTo
-                if (String.Compare(product.Name, name, true) == 0)
-                    return product;
-            };
+            //Option 3 - LINQ
+            return (from p in _products where String.Compare(p.Name, name, true) == 0
+                select p).FirstOrDefault();
 
-            return null;
+            //Option 2 - extension method
+            //return _products.FirstOrDefault(p => String.Compare(p.Name, name, true) == 0);
+
+            //Option 1 
+            //foreach (var product in _products)
+            //{
+            //    //product.Name.CompareTo
+            //    if (String.Compare(product.Name, name, true) == 0)
+            //        return product;
+            //};
+
+            //return null;
         }
         private Product GetById( int id )
         {

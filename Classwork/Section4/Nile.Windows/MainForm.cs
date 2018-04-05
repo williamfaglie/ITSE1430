@@ -29,7 +29,7 @@ namespace Nile.Windows
             RefreshUI();
         }
 
-        private void RefreshUI ()
+        private void RefreshUI()
         {
             //Get products
             IEnumerable<Product> products = null;
@@ -44,8 +44,8 @@ namespace Nile.Windows
             productBindingSource.DataSource = products?.ToList();
         }
 
-        private void PlayingWithProductMembers ()
-        { 
+        private void PlayingWithProductMembers()
+        {
             var product = new Product();
 
             Decimal.TryParse("123", out var price);
@@ -66,7 +66,7 @@ namespace Nile.Windows
             //var error = product.Validate();
 
             var str = product.ToString();
-            
+
             var productB = new Product();
             //productB.Name = "Product B";
             //productB.SetName("Product B");
@@ -98,18 +98,18 @@ namespace Nile.Windows
             {
                 MessageBox.Show(ex.Message);
             };
-            
+
 
             RefreshUI();
 
             //var index = FindEmptyProductIndex();
             //    if (index >= 0)
             //        _products[index] = form.Product;
-            
+
         }
 
         private void OnProductRemove( object sender, EventArgs e )
-        { 
+        {
             //Get the selected product
             var product = GetSelectedProduct();
             if (product == null)
@@ -148,11 +148,11 @@ namespace Nile.Windows
                 return;
             };
 
-            
-             EditProduct(product);
+
+            EditProduct(product);
         }
 
-        private void EditProduct( Product product)
+        private void EditProduct( Product product )
         {
             var form = new ProductDetailForm(product);
             var result = form.ShowDialog(this);
@@ -162,39 +162,62 @@ namespace Nile.Windows
             //Update the product
             form.Product.Id = product.Id;
 
-                try
-                {
-                    _database.Update(form.Product);
-                } catch (Exception e)
-                {
-                    MessageBox.Show(e.Message);
-                };
+            try
+            {
+                _database.Update(form.Product);
+            } catch (Exception e)
+            {
+                MessageBox.Show(e.Message);
+            };
 
             RefreshUI();
         }
 
         private void OnFileExit( object sender, EventArgs e )
         {
-            Close();   
+            Close();
         }
 
         private void OnHelpAbout( object sender, EventArgs e )
         {
             MessageBox.Show(this, "Not Implemented", "Help About", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                }
+        }
 
-        private bool ShowConfirmation ( string message, string title )
-         {
-             return MessageBox.Show(this, message, title, MessageBoxButtons.YesNo, MessageBoxIcon.Question)
-                 == DialogResult.Yes;
-         }
+        private bool ShowConfirmation( string message, string title )
+        {
+            return MessageBox.Show(this, message, title, MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+                == DialogResult.Yes;
+        }
 
+        //private sealed class SelectedRowType
+        //{
+        //    public int Index { get; set; }
+        //    public Product Product { get; set; }
+        //}
         private Product GetSelectedProduct ()
         {
-            if (dataGridView1.SelectedRows.Count > 0)
-            return dataGridView1.SelectedRows[0].DataBoundItem as Product;
+            //This is correct, just demoing something new...
+            // Get the first selected row in the grid, if any
+            //var items = (from r in dataGridView1.SelectedRows.OfType<DataGridViewRow>()
+            //       select new SelectedRowType() {
+            //           Index = r.Index,
+            //           Product = r.DataBoundItem as Product
+            //       }).FirstOrDefault();
 
-            return null;
+            //Anonymous type items
+            var items = (from r in dataGridView1.SelectedRows.OfType<DataGridViewRow>()
+                         select new {
+                             Index = r.Index,
+                             Product = r.DataBoundItem as Product
+                         }).FirstOrDefault();
+
+
+            return items.Product;
+
+            //if (dataGridView1.SelectedRows.Count > 0)
+            //return dataGridView1.SelectedRows[0].DataBoundItem as Product;
+
+            //return null;
         }
 
 
