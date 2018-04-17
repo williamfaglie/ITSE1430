@@ -1,9 +1,4 @@
-﻿//////////////////////////
-//Filename: MovieDetailForm.cs
-//Author: William Faglie
-//Description: This is my MovieDetailForm class
-//////////////////////////
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,50 +7,53 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using WilliamFaglie.MovieLib;
 
-
-namespace WilliamFaglie.MovieLib.Windows
+namespace Nile.Windows
 {
-    /// <summary>Allows you to edit and add movies.</summary>
-    public partial class MovieDetailForm : Form
+    public /*abstract*/ partial class ProductDetailForm : Form
     {
-        /// <summary>Initializes the form. Constructor.</summary>
-        public MovieDetailForm()
+        public ProductDetailForm()
         {
             InitializeComponent();
         }
 
-        /// <summary>Allows you to enter the movie title</summary>
-        /// <param name="title"></param>
-        public MovieDetailForm( string title ) : this()
-        { 
+        public ProductDetailForm( string title ) : this() //: base() Calls Form's base constructor
+        {
+            //InitializeComponent();
 
             Text = title;
         }
 
-        /// <summary>Creates a movie.</summary>
-        /// <param name="movie"></param>
-        public MovieDetailForm( Movie movie) : this("Update Product")
+        public ProductDetailForm( Product product) : this("Update Product")
         {
-            Movie = movie;
+            //InitializeComponent();
+            //Text = "Update Product";
+
+            Product = product;
         }
 
-        /// <summary>Creates movie object.</summary>
-        public Movie Movie { get; set; }
+        public Product Product { get; set; }
+
+        //public abstract DialogResult ShowDialogEx();
+
+        //public virtual DialogResult ShowDialogEx()
+        //{
+        //    return ShowDialog();
+        //}
 
         protected override void OnLoad( EventArgs e )
         {
             //Call base type
+            //OnLoad(e);
             base.OnLoad(e);
 
-            //Load movie
-            if (Movie != null)
+            //Load product
+            if (Product != null)
             {
-                _txtTitle.Text = Movie.Title;
-                _txtDescription.Text = Movie.Description;
-                _txtLength.Text = Movie.Length.ToString();
-                _checkIsOwned.Checked = Movie.IsOwned;
+                _txtName.Text = Product.Name;
+                _txtDescription.Text = Product.Description;
+                _txtPrice.Text = Product.Price.ToString();
+                _checkIsDiscontinued.Checked = Product.IsDiscontinued;
             };
 
             ValidateChildren();
@@ -83,26 +81,30 @@ namespace WilliamFaglie.MovieLib.Windows
                 return;
 
 
-            // Create movie
-            var movie = new Movie() {
-                Title = _txtTitle.Text,
+            // Create product - using object initializer syntax
+            var product = new Product() {
+                Name = _txtName.Text,
                 Description = _txtDescription.Text,
-                Length = ConvertToLength(_txtLength),
-                IsOwned = _checkIsOwned.Checked,
+                Price = ConvertToPrice(_txtPrice),
+                IsDiscontinued = _checkIsDiscontinued.Checked,
             };
 
-            //Validate
-            var errors = ObjectValidator.TryValidate(movie);
+            //Validate product using IValidatableObject
+            var errors = ObjectValidator.TryValidate(product);
             if (errors.Count() > 0)
             {
                 //Get first error
                 DisplayError(errors.ElementAt(0).ErrorMessage);
                 return;
             };
+            //    return;
+            //} else
+            //    _errorProvider.SetError(_txtName, "");
 
             //Return form form
-            Movie = movie;
+            Product = product;
             DialogResult = DialogResult.OK;
+            //DialogResult = DialogResult.None;
             Close();
         }
 
@@ -118,21 +120,21 @@ namespace WilliamFaglie.MovieLib.Windows
 
         }
 
-        private decimal ConvertToLength( TextBox control )
+        private decimal ConvertToPrice( TextBox control )
         {
             if (Decimal.TryParse(control.Text, out var price))
                 return price;
 
-            return 0;
+            return -1;
         }
 
-        private void _txtTitle_Validating( object sender, CancelEventArgs e )
+        private void _txtName_Validating( object sender, CancelEventArgs e )
         {
             var textbox = sender as TextBox;
 
             if (String.IsNullOrEmpty(textbox.Text))
             {
-                _errorProvider.SetError(textbox, "Title is required");
+                _errorProvider.SetError(textbox, "Name is required");
                 e.Cancel = true;
             } else
                 _errorProvider.SetError(textbox, "");
@@ -142,10 +144,10 @@ namespace WilliamFaglie.MovieLib.Windows
         {
             var textbox = sender as TextBox;
 
-            var length = ConvertToLength(textbox);
-            if (length < 0)
+            var price = ConvertToPrice(textbox);
+            if (price < 0)
             {
-                _errorProvider.SetError(textbox, "Length must be >= 0");
+                _errorProvider.SetError(textbox, "Price must be >= 0");
                 e.Cancel = true;
             } else
                 _errorProvider.SetError(textbox, "");

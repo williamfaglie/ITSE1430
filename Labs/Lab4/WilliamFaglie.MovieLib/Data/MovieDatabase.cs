@@ -30,7 +30,7 @@ namespace WilliamFaglie.MovieLib.Data
             var existing = GetMovieByTitleCore(movie.Title);
             if (existing != null)
             {
-                throw new Exception("Product already exists");
+                throw new Exception("Movie already exists");
             };
 
             return AddCore(movie);

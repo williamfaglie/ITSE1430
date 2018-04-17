@@ -47,7 +47,7 @@ namespace WilliamFaglie.MovieLib.Windows
         {
             var button = sender as ToolStripMenuItem;
 
-            var form = new MovieDetailForm("Add Product");
+            var form = new MovieDetailForm("Add Movie");
 
             //Show form modally
             var result = form.ShowDialog(this);
@@ -55,9 +55,16 @@ namespace WilliamFaglie.MovieLib.Windows
                 return;
 
             //Add to database
-            _database.Add(form.Movie, out var message);
-            if (!String.IsNullOrEmpty(message))
-                MessageBox.Show(message);
+            try
+            {
+                _database.Add(form.Movie);
+            } catch (NotImplementedException)
+            {
+                MessageBox.Show("not implemented yet");
+            } catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            };
 
             RefreshUI();
         }
@@ -81,21 +88,27 @@ namespace WilliamFaglie.MovieLib.Windows
                 return;
 
             //Remove product
-            _database.Remove(movie.Id);
+            try
+            {
+                _database.Remove(movie.Id);
+            } catch (Exception e)
+            {
+                MessageBox.Show(e.Message);
+            };
 
             RefreshUI();
         }
 
         private void OnProductEdit( object sender, EventArgs e )
         {
-            //Get selected product
-            var product = GetSelectedMovie();
-            if (product == null)
+            //Get selected movie
+            var movie = GetSelectedMovie();
+            if (movie == null)
             {
-                MessageBox.Show("No products selected", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("No movies selected", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             };
-            EditMovie(product);
+            EditMovie(movie);
         }
 
         private void EditMovie( Movie movie )
@@ -107,9 +120,14 @@ namespace WilliamFaglie.MovieLib.Windows
 
             //Update the movie
             form.Movie.Id = movie.Id;
-            _database.Update(form.Movie, out var message);
-            if (!String.IsNullOrEmpty(message))
-                MessageBox.Show(message);
+
+            try
+            {
+                _database.Update(form.Movie);
+            } catch (Exception e)
+            {
+                MessageBox.Show(e.Message);
+            };
 
             RefreshUI();
         }
