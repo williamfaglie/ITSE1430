@@ -1,7 +1,7 @@
 ﻿//////////////////////////
-//Filename: MemoryMovieDatabase.cs
+//Filename: SqlMovieDatabase.cs
 //Author: William Faglie
-//Description: This is my MemoryMovieDatabase class
+//Description: This is my SqlMovieDatabase class
 //////////////////////////
 using System;
 using System.Collections.Generic;
@@ -13,12 +13,14 @@ using System.Threading.Tasks;
 
 namespace WilliamFaglie.MovieLib.Data.Sql
 {
-    /// <summary>Provides an in-memory movie database.</summary>
+    /// <summary>Provides a Sql movie database.</summary>
     public class SqlMovieDatabase : MovieDatabase
     {
 
         private readonly string _connectionString;
 
+        /// <summary>Error handling for the connectionString.</summary>
+        /// <param name="connectionString"></param>
         public SqlMovieDatabase( string connectionString )
         {
             if (connectionString == null)

@@ -29,6 +29,8 @@ namespace WilliamFaglie.MovieLib
                 return errors;
             }
 
+        /// <summary>Determines validation using the validation context.</summary>
+        /// <param name="source"></param>
         public static void Validate ( this IValidatableObject source)
         {
             var context = new ValidationContext(source);

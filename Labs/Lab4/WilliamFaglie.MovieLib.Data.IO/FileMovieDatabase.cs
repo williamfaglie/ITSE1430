@@ -1,4 +1,9 @@
-﻿using System;
+﻿//////////////////////////
+//Filename: FileMovieDatabase.cs
+//Author: William Faglie
+//Description: This is my FileMovieDatabase class
+//////////////////////////
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -9,13 +14,15 @@ using WilliamFaglie.MovieLib.Data;
 
 namespace Nile.Data.IO
 {
+    /// <summary>Loads movie from file, creates file for contents to be read into.</summary>
     public class FileMovieDatabase : MovieDatabase
     {
+        /// <summary>Declares filepath to file in the constructor.</summary>
+        /// <param name="filename"></param>
         public FileMovieDatabase( string filename )
         {
             _filename = filename;
         }
-
         protected override Movie AddCore( Movie movie )
         {
             EnsureInitialized();
@@ -43,12 +50,6 @@ namespace Nile.Data.IO
             {
                 _items = LoadData();
 
-                //_id = 0;
-                //foreach (var item in _items)
-                //{
-                //    if (item.Id > _id)
-                //        _id = item.Id;
-                //};
                 if (_items.Any())
                 {
                     _id = _items.Max(i => i.Id);
@@ -110,36 +111,13 @@ namespace Nile.Data.IO
             EnsureInitialized();
 
             return _items.FirstOrDefault(i => i.Id == id);
-            //foreach (var item in _items)
-            //{
-            //    if (item.Id == id)
-            //        return item;
-            //};
-
-            //return null;
         }
-
-        //private bool IsId ( Product product )
-        //{
-        //    return product.Id == id;
-        //}
 
         protected override Movie GetMovieByTitleCore( string title )
         {
             EnsureInitialized();
 
-            
-            
-                return _items.FirstOrDefault(i => String.Compare(i.Title, title, true) == 0);
-                    
-            
-            //foreach (var item in _items)
-            //{
-            //    if (String.Compare(item.Name, name, true) == 0)
-            //        return item;
-            //};
-
-            //return null;
+            return _items.FirstOrDefault(i => String.Compare(i.Title, title, true) == 0);
         }
 
         protected override void RemoveCore( int id )
@@ -167,6 +145,7 @@ namespace Nile.Data.IO
 
             return movie;   
         }
+
         private void SaveData()
         {
             using (var stream = File.OpenWrite(_filename))
@@ -178,50 +157,12 @@ namespace Nile.Data.IO
 
                     writer.WriteLine(line);
                 };
-            };      
-        }
-
-        /*private void SaveDataPoorer()
-        {
-            Stream stream = null;
-            StreamWriter writer = null;
-            try
-            {
-                stream = File.OpenWrite(_filename);
-                writer = new StreamWriter(stream);
-
-                foreach (var item in _items)
-                {
-                    var line = $"{item.Id},{item.Title},{item.Description},{item.Length},{(item.IsOwned ? 1 : 0)}";
-
-                    writer.WriteLine(line);
-                };
-            } catch (ArgumentException e)
-            {
-                //Never right!!!
-                //throw e;
-                throw;
-            } catch (Exception e)
-            {
-                //Example of wrapping an exception to hide details
-                throw new Exception("Save failed", e);
-            }finally
-            {
-                writer?.Close();
-                stream?.Close();
             };
-        }*/
+        }
 
         private void SaveDataNonstream ()
         {
             var lines = _items.Select(item => $"{item.Id},{item.Title},{item.Description},{item.Length},{(item.IsOwned ? 1 : 0)}");
-            //var lines = new List<string>();
-
-            //foreach (var item in _items)
-            //{
-            //    var line = $"{item.Id},{item.Name},{item.Description},{item.Price},{(item.IsDiscontinued ? 1 : 0)}";
-            //    lines.Add(line);
-            //};
 
             File.WriteAllLines(_filename, lines);
         }

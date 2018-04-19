@@ -37,11 +37,6 @@ namespace WilliamFaglie.MovieLib.Data.Memory
 
         protected override IEnumerable<Movie> GetAllCore()
         {
-            //foreach (var movie in _movies)
-            //{
-            //    if (movie != null)
-            //        yield return Clone(movie);
-            //};
             return from m in _movies
                    select Clone(m);
         }
@@ -72,13 +67,6 @@ namespace WilliamFaglie.MovieLib.Data.Memory
 
         protected override Movie GetCore( int id )
         {
-            //foreach (var movie in _movies)
-            //{
-            //    if (movie.Id == id)
-            //        return movie;
-            //};
-
-            //return null;
             return (from m in _movies
                     where m.Id == id
                     select m).FirstOrDefault();
@@ -86,13 +74,6 @@ namespace WilliamFaglie.MovieLib.Data.Memory
 
         protected override Movie GetMovieByTitleCore( string title )
         {
-            //foreach (var movie in _movies)
-            //{
-            //    if (String.Compare(movie.Title, title, true) == 0)
-            //        return movie;
-            //};
-
-            //return null;
             return (from m in _movies where String.Compare(m.Title, title, true) == 0
                     select m).FirstOrDefault();
         }
