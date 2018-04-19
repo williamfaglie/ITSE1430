@@ -11,7 +11,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WilliamFaglie.MovieLib.Data.Memory
+namespace WilliamFaglie.MovieLib.Data.Sql
 {
     /// <summary>Provides an in-memory movie database.</summary>
     public class SqlMovieDatabase : MovieDatabase
@@ -81,14 +81,12 @@ namespace WilliamFaglie.MovieLib.Data.Memory
                 {
                     foreach (var row in ds.Tables[0].Rows.OfType<DataRow>())
                     {
-                        //row["Id"] = 10;
-                        //row.SetField("Id", 10);
 
                         var movie = new Movie() {
                             Id = Convert.ToInt32(row["Id"]),
                             Title = row.Field<string>("Title"),
                             Description = row.Field<string>("Description"),
-                            Length = row.Field<decimal>("Length"),
+                            Length = row.Field<int>("Length"),
                             IsOwned = row.Field<bool>("IsOwned")
                         };
 
@@ -149,8 +147,8 @@ namespace WilliamFaglie.MovieLib.Data.Memory
             return new Movie() {
                 Id = Convert.ToInt32(reader["Id"]),
                 Title = reader.GetFieldValue<string>(1),
-                Length = reader.GetDecimal(2),
-                Description = reader.GetString(3),
+                Length = reader.GetInt32(3),
+                Description = reader.GetString(2),
                 IsOwned = reader.GetBoolean(4)
             };
         }

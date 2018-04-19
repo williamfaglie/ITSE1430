@@ -7,8 +7,8 @@
     <ProjectGuid>{9E8DD9C1-D6A2-4F6A-B255-F8DFFF7A8042}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>WilliamFaglie.MovieLib.Data.Memory</RootNamespace>
-    <AssemblyName>WilliamFaglie.MovieLib.Data.Memory</AssemblyName>
+    <RootNamespace>WilliamFaglie.MovieLib.Data.Sql</RootNamespace>
+    <AssemblyName>WilliamFaglie.MovieLib.Data.Sql</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>

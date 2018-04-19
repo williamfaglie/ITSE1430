@@ -6,6 +6,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Configuration;
 using System.Data;
 using System.Drawing;
 using System.Linq;
@@ -15,7 +16,7 @@ using System.Windows.Forms;
 using WilliamFaglie.MovieLib;
 using WilliamFaglie.MovieLib.Data;
 using WilliamFaglie.MovieLib.Data.Memory;
-
+using WilliamFaglie.MovieLib.Data.Sql;
 
 namespace WilliamFaglie.MovieLib.Windows
 {
@@ -32,15 +33,26 @@ namespace WilliamFaglie.MovieLib.Windows
         {
             base.OnLoad(e);
 
+            var connString = ConfigurationManager.ConnectionStrings["MovieDatabase"];
+            _database = new SqlMovieDatabase(connString.ConnectionString);
+
+
             RefreshUI();
         }
 
         private void RefreshUI()
         {
             //Get products
-            var movies = _database.GetAll();
+            IEnumerable<Movie> movies = null;
+            try
+            {
+                movies = _database.GetAll();
+            } catch (Exception)
+            {
+                MessageBox.Show("Error loading movies");
+            }
 
-            movieBindingSource.DataSource = movies.ToList();
+            movieBindingSource.DataSource = movies?.ToList();
         }
 
         private void OnProductAdd( object sender, EventArgs e )
@@ -154,14 +166,19 @@ namespace WilliamFaglie.MovieLib.Windows
 
         private Movie GetSelectedMovie()
         {
-            if (dataGridView1.SelectedRows.Count > 0)
-                return dataGridView1.SelectedRows[0].DataBoundItem as Movie;
+            //Anonymous type items
+            var items = (from r in dataGridView1.SelectedRows.OfType<DataGridViewRow>()
+                         select new {
+                             Index = r.Index,
+                             Movie = r.DataBoundItem as Movie
+                         }).FirstOrDefault();
 
-            return null;
+
+            return items.Movie;
         }
 
 
-        private IMovieDatabase _database = new MemoryMovieDatabase();
+        private IMovieDatabase _database;
 
         private void OnCellDoubleClick( object sender, DataGridViewCellEventArgs e )
         {

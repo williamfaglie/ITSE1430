@@ -34,6 +34,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -99,9 +100,17 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\WilliamFaglie.MovieLib.Data.IO\WilliamFaglie.MovieLib.Data.IO.csproj">
+      <Project>{ee5f77df-5095-42a3-9148-ad303667be12}</Project>
+      <Name>WilliamFaglie.MovieLib.Data.IO</Name>
+    </ProjectReference>
     <ProjectReference Include="..\WilliamFaglie.MovieLib.Data.Memory\WilliamFaglie.MovieLib.Data.Memory.csproj">
       <Project>{ae405a65-7ec4-452c-b548-f1a1bf539588}</Project>
       <Name>WilliamFaglie.MovieLib.Data.Memory</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WilliamFaglie.MovieLib.Data.Sql\WilliamFaglie.MovieLib.Data.Sql.csproj">
+      <Project>{9e8dd9c1-d6a2-4f6a-b255-f8dfff7a8042}</Project>
+      <Name>WilliamFaglie.MovieLib.Data.Sql</Name>
     </ProjectReference>
     <ProjectReference Include="..\WilliamFaglie.MovieLib\WilliamFaglie.MovieLib.csproj">
       <Project>{70bb145e-e56e-4d51-8d20-c41df86887c1}</Project>
