@@ -147,6 +147,8 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\ProductExtensions.cs" />
+    <Compile Include="Models\ProductModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -185,7 +187,6 @@
     <Content Include="Views\Home\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Models\" />
     <Folder Include="Views\Products\" />
   </ItemGroup>
   <ItemGroup>
@@ -200,6 +201,16 @@
   <ItemGroup>
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Nile.Data.Sql\Nile.Data.Sql.csproj">
+      <Project>{FD9DED31-DF3B-4DE4-BD82-28FF510BB855}</Project>
+      <Name>Nile.Data.Sql</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Nile\Nile.csproj">
+      <Project>{8267a989-7017-4d17-8413-bdf1f4c4bc90}</Project>
+      <Name>Nile</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
