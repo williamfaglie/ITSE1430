@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 using WilliamFaglie.MovieLib;
 using WilliamFaglie.MovieLib.Data;
 
-namespace Nile.Data.IO
+namespace WilliamFaglie.MovieLib.Data.IO
 {
     /// <summary>Loads movie from file, creates file for contents to be read into.</summary>
     public class FileMovieDatabase : MovieDatabase

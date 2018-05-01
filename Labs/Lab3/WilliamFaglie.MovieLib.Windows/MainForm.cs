@@ -37,7 +37,7 @@ namespace WilliamFaglie.MovieLib.Windows
 
         private void RefreshUI()
         {
-            //Get products
+            //Get movies
             var movies = _database.GetAll();
 
             movieBindingSource.DataSource = movies.ToList();
@@ -89,13 +89,13 @@ namespace WilliamFaglie.MovieLib.Windows
         private void OnProductEdit( object sender, EventArgs e )
         {
             //Get selected product
-            var product = GetSelectedMovie();
-            if (product == null)
+            var movie = GetSelectedMovie();
+            if (movie == null)
             {
-                MessageBox.Show("No products selected", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("No movies selected", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             };
-            EditMovie(product);
+            EditMovie(movie);
         }
 
         private void EditMovie( Movie movie )
