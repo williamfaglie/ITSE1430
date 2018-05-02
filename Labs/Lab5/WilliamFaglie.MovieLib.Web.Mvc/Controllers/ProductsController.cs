@@ -8,7 +8,7 @@ using WilliamFaglie.MovieLib.Data;
 using WilliamFaglie.MovieLib.Data.Sql;
 using WilliamFaglie.MovieLib.Web.Mvc.Models;
 
-namespace Nile.Web.Mvc.Controllers
+namespace WilliamFaglie.MovieLib.Web.Mvc.Controllers
 {
     public class ProductsController : Controller
     {
@@ -23,9 +23,9 @@ namespace Nile.Web.Mvc.Controllers
         // GET: Products
         public ActionResult Index()
         {
-            var products = _database.GetAll();
+            var movies = _database.GetAll();
 
-            return View(products.Select(p => p.ToModel()));
+            return View(movies.Select(p => p.ToModel()));
         }
 
         [HttpGet]
@@ -41,9 +41,9 @@ namespace Nile.Web.Mvc.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    var product = model.ToDomain();
+                    var movie = model.ToDomain();
 
-                    product = _database.Add(product);
+                    movie = _database.Add(movie);
 
                     return RedirectToAction(nameof(Index));
                 };
@@ -58,12 +58,12 @@ namespace Nile.Web.Mvc.Controllers
         [HttpGet]
         public ActionResult Edit ( int id)
         {
-            var product = _database.GetAll().FirstOrDefault(p => p.Id == id);
+            var movie = _database.GetAll().FirstOrDefault(p => p.Id == id);
 
-            if (product == null)
+            if (movie == null)
                 return HttpNotFound();
 
-            return View(product.ToModel());
+            return View(movie.ToModel());
         }
 
         [HttpPost]
@@ -74,9 +74,9 @@ namespace Nile.Web.Mvc.Controllers
             {
                 if (ModelState.IsValid)
                 { 
-                    var product = model.ToDomain();
+                    var movie = model.ToDomain();
 
-                    product = _database.Update(product);
+                    movie = _database.Update(movie);
 
                     return RedirectToAction("Index");
                 };
@@ -92,12 +92,12 @@ namespace Nile.Web.Mvc.Controllers
         [Route("products/delete/{id}")]
         public ActionResult Delete( int id )
         {
-            var product = _database.GetAll().FirstOrDefault(p => p.Id == id);
+            var movie = _database.GetAll().FirstOrDefault(p => p.Id == id);
 
-            if (product == null)
+            if (movie == null)
                 return HttpNotFound();
 
-            return View(product.ToModel());
+            return View(movie.ToModel());
         }
 
         [HttpPost]
@@ -105,9 +105,9 @@ namespace Nile.Web.Mvc.Controllers
         {
             try
             {
-                var product = _database.GetAll().FirstOrDefault(p => p.Id == model.Id);
+                var movie = _database.GetAll().FirstOrDefault(p => p.Id == model.Id);
 
-                if (product == null)
+                if (movie == null)
                     return HttpNotFound();
 
                 _database.Remove(model.Id);
