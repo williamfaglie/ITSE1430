@@ -4,46 +4,46 @@ using System.Configuration;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using WilliamFaglie.MovieLib.Data;
-using WilliamFaglie.MovieLib.Data.Sql;
-using WilliamFaglie.MovieLib.Web.Mvc.Models;
+using Nile.Data;
+using Nile.Data.Sql;
+using Nile.Web.Mvc.Models;
 
-namespace WilliamFaglie.MovieLib.Web.Mvc.Controllers
+namespace Nile.Web.Mvc.Controllers
 {
     public class ProductsController : Controller
     {
         public ProductsController()
         {
-            var connString = ConfigurationManager.ConnectionStrings["MovieDatabase"];
-            _database = new SqlMovieDatabase(connString.ConnectionString);
+            var connString = ConfigurationManager.ConnectionStrings["NileDatabase"];
+            _database = new SqlProductDatabase(connString.ConnectionString);
         }
-        private readonly IMovieDatabase _database;
+        private readonly IProductDatabase _database;
 
             [HttpGet]   
-        // GET: Movies
+        // GET: Products
         public ActionResult Index()
         {
-            var movies = _database.GetAll();
+            var products = _database.GetAll();
 
-            return View(movies.Select(m => m.ToModel()));
+            return View(products.Select(p => p.ToModel()));
         }
 
         [HttpGet]
         public ActionResult Create()
         {
-            return View(new MovieModel());
+            return View(new ProductModel());
         }
 
         [HttpPost]
-        public ActionResult Create ( MovieModel model)
+        public ActionResult Create ( ProductModel model)
         {
             try
             {
                 if (ModelState.IsValid)
                 {
-                    var movie = model.ToDomain();
+                    var product = model.ToDomain();
 
-                    movie = _database.Add(movie);
+                    product = _database.Add(product);
 
                     return RedirectToAction(nameof(Index));
                 };
@@ -58,25 +58,25 @@ namespace WilliamFaglie.MovieLib.Web.Mvc.Controllers
         [HttpGet]
         public ActionResult Edit ( int id)
         {
-            var movie = _database.GetAll().FirstOrDefault(m => m.Id == id);
+            var product = _database.GetAll().FirstOrDefault(p => p.Id == id);
 
-            if (movie == null)
+            if (product == null)
                 return HttpNotFound();
 
-            return View(movie.ToModel());
+            return View(product.ToModel());
         }
 
         [HttpPost]
-        public ActionResult Edit( MovieModel model )
+        public ActionResult Edit( ProductModel model )
         {
 
             try
             {
                 if (ModelState.IsValid)
                 { 
-                    var movie = model.ToDomain();
+                    var product = model.ToDomain();
 
-                    movie = _database.Update(movie);
+                    product = _database.Update(product);
 
                     return RedirectToAction("Index");
                 };
@@ -89,25 +89,25 @@ namespace WilliamFaglie.MovieLib.Web.Mvc.Controllers
         }
 
         [HttpGet]
-        [Route("movies/delete/{id}")]
+        [Route("products/delete/{id}")]
         public ActionResult Delete( int id )
         {
-            var movie = _database.GetAll().FirstOrDefault(m => m.Id == id);
+            var product = _database.GetAll().FirstOrDefault(p => p.Id == id);
 
-            if (movie == null)
+            if (product == null)
                 return HttpNotFound();
 
-            return View(movie.ToModel());
+            return View(product.ToModel());
         }
 
         [HttpPost]
-        public ActionResult Delete( MovieModel model )
+        public ActionResult Delete( ProductModel model )
         {
             try
             {
-                var movie = _database.GetAll().FirstOrDefault(m => m.Id == model.Id);
+                var product = _database.GetAll().FirstOrDefault(p => p.Id == model.Id);
 
-                if (movie == null)
+                if (product == null)
                     return HttpNotFound();
 
                 _database.Remove(model.Id);
