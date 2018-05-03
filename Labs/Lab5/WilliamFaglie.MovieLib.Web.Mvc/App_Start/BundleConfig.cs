@@ -1,10 +1,18 @@
-﻿using System.Web;
+﻿//////////////////////////
+//Filename: BundleConfig.cs
+//Author: William Faglie
+//Description: This is my BundleConfig class
+//////////////////////////
+using System.Web;
 using System.Web.Optimization;
 
 namespace Nile.Web.Mvc
 {
+    /// <summary>Bundles.</summary>
     public class BundleConfig
     {
+        /// <summary>Registers bundles.</summary>
+        /// <param name="bundles"></param>
         // For more information on bundling, visit https://go.microsoft.com/fwlink/?LinkId=301862
         public static void RegisterBundles( BundleCollection bundles )
         {

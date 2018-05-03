@@ -1,4 +1,9 @@
-﻿using System;
+﻿//////////////////////////
+//Filename: ProductsController.cs
+//Author: William Faglie
+//Description: This is my ProductsController class
+//////////////////////////
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
@@ -10,8 +15,10 @@ using WilliamFaglie.MovieLib.Web.Mvc.Models;
 
 namespace WilliamFaglie.MovieLib.Web.Mvc.Controllers
 {
+    /// <summary>Products controller.</summary>
     public class ProductsController : Controller
     {
+        /// <summary>Contructor. ConnectionString to database.</summary>
         public ProductsController()
         {
             var connString = ConfigurationManager.ConnectionStrings["MovieDatabase"];
@@ -19,8 +26,9 @@ namespace WilliamFaglie.MovieLib.Web.Mvc.Controllers
         }
         private readonly IMovieDatabase _database;
 
-            [HttpGet]   
-        // GET: Movies
+        /// <summary>List action result.</summary>
+        /// <returns></returns>
+        [HttpGet]   
         public ActionResult List()
         {
             var movies = _database.GetAll();
@@ -28,12 +36,17 @@ namespace WilliamFaglie.MovieLib.Web.Mvc.Controllers
             return View(movies.Select(m => m.ToModel()));
         }
 
+        /// <summary>Create action result. Get.</summary>
+        /// <returns></returns>
         [HttpGet]
         public ActionResult Create()
         {
             return View(new MovieModel());
         }
 
+        /// <summary>Create action result. Post.</summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
         [HttpPost]
         public ActionResult Create ( MovieModel model)
         {
@@ -55,6 +68,9 @@ namespace WilliamFaglie.MovieLib.Web.Mvc.Controllers
             return View(model);
         }
 
+        /// <summary>Edit action result. Get.</summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpGet]
         public ActionResult Edit ( int id)
         {
@@ -66,6 +82,9 @@ namespace WilliamFaglie.MovieLib.Web.Mvc.Controllers
             return View(movie.ToModel());
         }
 
+        /// <summary>Edit action result. Post.</summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
         [HttpPost]
         public ActionResult Edit( MovieModel model )
         {
@@ -88,6 +107,9 @@ namespace WilliamFaglie.MovieLib.Web.Mvc.Controllers
             return View(model);
         }
 
+        /// <summary>Delete action result. Get.</summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpGet]
         [Route("movies/delete/{id}")]
         public ActionResult Delete( int id )
@@ -100,6 +122,9 @@ namespace WilliamFaglie.MovieLib.Web.Mvc.Controllers
             return View(movie.ToModel());
         }
 
+        /// <summary>Delete action result. Post.</summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
         [HttpPost]
         public ActionResult Delete( MovieModel model )
         {
