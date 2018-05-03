@@ -21,7 +21,7 @@ namespace WilliamFaglie.MovieLib.Web.Mvc.Controllers
 
             [HttpGet]   
         // GET: Movies
-        public ActionResult Index()
+        public ActionResult List()
         {
             var movies = _database.GetAll();
 
@@ -45,7 +45,7 @@ namespace WilliamFaglie.MovieLib.Web.Mvc.Controllers
 
                     movie = _database.Add(movie);
 
-                    return RedirectToAction(nameof(Index));
+                    return RedirectToAction(nameof(List));
                 };
             } catch (Exception e)
             {
@@ -78,7 +78,7 @@ namespace WilliamFaglie.MovieLib.Web.Mvc.Controllers
 
                     movie = _database.Update(movie);
 
-                    return RedirectToAction("Index");
+                    return RedirectToAction("List");
                 };
             } catch (Exception e)
             {
@@ -112,7 +112,7 @@ namespace WilliamFaglie.MovieLib.Web.Mvc.Controllers
 
                 _database.Remove(model.Id);
 
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(List));
             } catch (Exception e)
             {
                 ModelState.AddModelError("", e.Message);
